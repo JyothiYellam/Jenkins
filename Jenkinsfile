@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     stages {
-        stage ('Build') {
+        stage('Build') {
             steps {
                 script{
                     sh """ 
@@ -10,7 +10,7 @@ pipeline {
                 }
             }
         }
-        stage {
+        stage('Test') {
             steps {
                 script{
                     sh """
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-        stage {
+        stage('Deploy') {
             steps {
                 script{
                     sh """
