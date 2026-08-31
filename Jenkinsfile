@@ -50,7 +50,7 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                expression { "${params.DEPLOY}" == "true" }
+                expression { "${params.DEPLOY}" == "false" }
             }
 
           /*   input {
