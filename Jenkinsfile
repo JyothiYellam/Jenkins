@@ -39,21 +39,23 @@ pipeline {
                 script{
                     sh """
                         echo "Testing" 
-                        echo "Hello ${params.PERSON}"
-                        echo "Biography: ${params.BIOGRAPHY}"
-
-                        echo "Toggle: ${params.TOGGLE}"
-
-                        echo "Choice: ${params.CHOICE}"
-
+                        echo "Hello ${params.CHOICE}"
                         echo "Password: ${params.PASSWORD}"
                     """
                 }
             }
         }
         stage('Deploy') {
+            input {
+                message "Should we continue"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should  I say hello to?')
+                }
+            }
             steps {
-                script{
+                script {
                     sh """
                         echo "Deploying" 
                     """
@@ -61,6 +63,7 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
             echo 'I will always say Hello again!' 
